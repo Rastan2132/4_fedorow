@@ -130,6 +130,7 @@
     <ClCompile Include="4_fedorow.cpp" />
     <ClCompile Include="Fuction.cpp" />
     <ClCompile Include="Graficscpp.cpp" />
+    <ClCompile Include="uzond.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Header.h" />

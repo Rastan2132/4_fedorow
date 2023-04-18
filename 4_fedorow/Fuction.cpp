@@ -98,9 +98,6 @@ void show(Uzond* program, short size, short size_of_people)
 
 
 
-
-
-
 void add(Uzond*& program, short* size, short* size_of_peopl, vector<string> arr_name, vector<string> arr_suname, vector<string>arr_of_name_urzant)
 {
 	cout << "Сhcesz dodać urzond lub osobę(u lub o)" << endl;
