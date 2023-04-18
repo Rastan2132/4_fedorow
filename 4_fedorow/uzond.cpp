@@ -109,6 +109,23 @@ Uzond::Uzond()
      }
      return people[index];
  }
+ void Uzond::removeUzond(Uzond*& program, short size, short index) {
+     if (index < 0 || index >= size) {
+         return;
+     }
+     delete[] program[index].getPeople();
+     Uzond* new_program = new Uzond[size - 1];
+     int j = 0;
+     for (int i = 0; i < size; i++) {
+         if (i != index) {
+             new_program[j] = program[i];
+             j++;
+         }
+     }
+     delete[] program;
+     program = new_program;
+     size--;
+ }
 
  void Uzond::removePerson(int index) {
      if (index < 0 || index >= size_Of_arr_peopls) {

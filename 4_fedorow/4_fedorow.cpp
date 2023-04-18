@@ -29,7 +29,7 @@ int main()
 			add(program, &size, &size_of_peopl, NAMES, SURNAMES, NAMES_of_Uzond);
 			break;
 		case (100):
-			//dell(program, &size, &size_of_peopl);
+			dell(program, &size, &size_of_peopl);
 			break;
 		case (101):
 

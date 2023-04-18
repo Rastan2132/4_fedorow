@@ -8,6 +8,7 @@ void error()
 }
 
 bool isdigit_r(unsigned char a) { return (a >= '0' && a <= '9'); }
+
 bool isalpha_r(unsigned char a)
 {
 	bool rez = ((a >= 'a' && a <= 'z') || (a >= 'A' && a <= 'Z') || a == '-');
@@ -26,8 +27,6 @@ Uzond* create(short size, short size_of_peopl, vector<string> arrOfNameUrzant, v
 	return arr;
 }
 
-
-
 int rand_data(string sex)								/// от 0 до 9 муж. от 10 до 19 жен
 {
 	if (sex == "man")
@@ -36,6 +35,7 @@ int rand_data(string sex)								/// от 0 до 9 муж. от 10 до 19 же�
 		return rand() % 5 + 5;
 
 }
+
 string rand_data(int max)
 {
 	string rez;
@@ -96,8 +96,6 @@ void show(Uzond* program, short size, short size_of_people)
 	}
 }
 
-
-
 void add(Uzond*& program, short* size, short* size_of_peopl, vector<string> arr_name, vector<string> arr_suname, vector<string>arr_of_name_urzant)
 {
 	cout << "Сhcesz dodać urzond lub osobę(u lub o)" << endl;
@@ -126,7 +124,7 @@ void add(Uzond*& program, short* size, short* size_of_peopl, vector<string> arr_
 	}
 	
 }
-/*void dell(Uzond*& program, short* size, short* size_of_people)
+void dell(Uzond*& program, short* size, short* size_of_people)
 {
 	cout << "Usunąć użytkownika lub użytkownika? (u lub o)" << endl;
 	switch (_getch()) {
@@ -141,17 +139,11 @@ void add(Uzond*& program, short* size, short* size_of_peopl, vector<string> arr_
 		if (num < 1 || num > *size) {
 			error();
 		}
-
-		(*size)--;
-		Uzond* program_n = new Uzond[*size];
-		for (int i = 0, j = 0; i < *size + 1; i++) {
-			if (i != num - 1) {
-				program_n[j] = program[i];
-				j++;
-			}
+		for (int i = 0; i < *size_of_people; i++) {
+			program[i].removeUzond(program,*size, num);
 		}
-		delete[] program[num - 1].getPeople();
-		program = program_n;
+		(*size)--;
+		
 		break;
 	}
 
@@ -169,22 +161,14 @@ void add(Uzond*& program, short* size, short* size_of_peopl, vector<string> arr_
 		}
 
 		for (int i = 0; i < *size; i++) {
-			Users** new_people = new Users * [*size_of_people - 1];
-			for (int j = 0, k = 0; j < *size_of_people; j++) {
-				if (j != num - 1) {
-					new_people[k] = program[i].getPeople()[j];
-					k++;
-				}
-			}
-			delete[] program[i].getPeople();
-			program[i].setPeople(new_people, *size_of_people);
+			program[i].removePerson(num);
 		}
 		(*size_of_people)--;
 		break;
 	}
 	}
 }
-
+/*
 void edit(Uzond*& program, short index_1, short index_2)
 {
 	system("cls");
