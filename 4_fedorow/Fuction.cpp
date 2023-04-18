@@ -15,29 +15,18 @@ bool isalpha_r(unsigned char a)
 	return rez;
 }
 
-Uzond* create(short size, short size_of_peopl) {
+Uzond* create(short size, short size_of_peopl, vector<string> arrOfNameUrzant, vector<string> arrOfNames, vector<string> arrOfSurnames) {
 	Uzond* arr = new Uzond[size];
 	for (int i = 0; i < size; i++) {
-		arr[i].createPeopleArray(size_of_peopl);
+		arr[i].setName(arrOfNameUrzant[rand() % arrOfNameUrzant.size()]);
+		arr[i].setNumer(rand_data(num_));
+		arr[i].createPeopleArray(size_of_peopl, arrOfNames, arrOfSurnames);
+
 	}
 	return arr;
 }
 
 
-void initRand(Uzond*& program, short size, short size_of_peopl, vector<string> arrName, vector<string> arrSurname, vector<string> arrOfNameUrzant) {
-	for (int i = 0; i < size; i++) {
-		program[i].setName(arrOfNameUrzant[rand() % 4]);
-		program[i].setNumer(rand_data(num_));
-		for (int j = 0; j < size_of_peopl; j++) {
-			program[i].getPeople()[j] = new Uzond::Users;
-			program[i].getPeople()[j]->sex = rand_data(sex_);
-			program[i].getPeople()[j]->Name = arrName[rand_data(program[i].getPeople()[j]->sex)];
-			program[i].getPeople()[j]->Surname = arrSurname[rand_data(program[i].getPeople()[j]->sex)];
-			program[i].getPeople()[j]->Year = rand_data(year_);
-			program[i].getPeople()[j]->piesel = rand_data(piesel_);
-		}
-	}
-}
 
 int rand_data(string sex)								/// от 0 до 9 муж. от 10 до 19 жен
 {
@@ -87,13 +76,13 @@ string rand_data(int max)
 	return nullptr;
 }
 
-void show(Uzond* program, short size, short size_of_peopl)
+void show(Uzond* program, short size, short size_of_people)
 {
 	system("cls");
 	cout << "----------------------------------------------------------------------------------------------------\n";
 	cout << MENU << endl;
 	cout << "----------------------------------------------------------------------------------------------------\n";
-	cout << "                              ---=== UZOND BOOK ===---            your Uzond: " << size << endl;
+	cout << "					---=== UZOND BOOK ===--- your Uzond: " << size << endl;
 	cout << "----------------------------------------------------------------------------------------------------\n";
 	cout << stru << endl;
 	cout << "----------------------------------------------------------------------------------------------------\n";
@@ -102,15 +91,16 @@ void show(Uzond* program, short size, short size_of_peopl)
 		cout << right << setw(3) << setfill('0') << i + 1 << setfill(' ') << " ";
 		cout << MANIP << program[i].getName() << " " << MANIP << program[i].getNumer() << endl;
 		cout << endl << " ";
-		for (short j = 0; j < size_of_peopl; j++)
-		{
-			cout << right << setw(3) << setfill('0') << j + 1 << setfill(' ') << " " << MANIP << program[i].getPeople()[j]->Name << " " << MANIP << program[i].getPeople()[j]->Surname << " " << MANIP << program[i].getPeople()[j]->Year << " " << MANIP << program[i].getPeople()[j]->piesel << " " << MANIP << program[i].getPeople()[j]->sex << " ";
-			cout << endl << " ";
-		}
-		cout << endl << endl;
+		program[i].show(program[i], size_of_people);
+		
 	}
 }
-/*
+
+
+
+
+
+
 void add(Uzond*& program, short* size, short* size_of_peopl, vector<string> arr_name, vector<string> arr_suname, vector<string>arr_of_name_urzant)
 {
 	cout << "Сhcesz dodać urzond lub osobę(u lub o)" << endl;
@@ -121,56 +111,25 @@ void add(Uzond*& program, short* size, short* size_of_peopl, vector<string> arr_
 		(*size)++;
 		program_n = new Uzond[*size];
 		for (int i = 0; i < *size - 1; i++) {
-			Users** people = new Users * [*size_of_peopl];
-			for (int j = 0; j < *size_of_peopl; j++) {
-				people[j] = new Users();
-			}
-			program_n[i].setPeople(program[i].getPeople(), *size_of_peopl);
-			program_n[i].setName(program[i].getName());
-			program_n[i].setNumer(program[i].getNumer());
+			program_n[i] = program[i];
 		}
-		Users** people = new Users * [*size_of_peopl];
-		for (int j = 0; j < *size_of_peopl; j++) {
-			people[j] = new Users();
-			people[j]->sex = rand_data(sex_);
-			people[j]->Name = arr_name[rand_data(people[j]->sex)];
-			people[j]->Surname = arr_suname[rand_data(people[j]->sex)];
-			people[j]->Year = rand_data(year_);
-			people[j]->piesel = rand_data(piesel_);
-		}
-		program_n[*size - 1].setPeople(people, *size_of_peopl);
-		program_n[*size - 1].setNumer(rand_data(num_));
 		program_n[*size - 1].setName(arr_of_name_urzant[rand() % 4]);
+		program_n[*size - 1].setNumer(rand_data(num_));
+		program_n[*size-1].createPeopleArray(*size_of_peopl, arr_name, arr_suname);
 
-		delete[] program;
 		program = program_n;
 
 		break;
 	}
 	case (111):
 		(*size_of_peopl)++;
-		program_n = new Uzond[*size];
-		for (int i = 0; i < *size; i++) {
-			Users** people = new Users * [*size_of_peopl];
-			for (int j = 0; j < *size_of_peopl - 1; j++) {
-				people[j] = program[i].getPeople()[j];
-			}
-			people[*size_of_peopl - 1] = new Users();
-			people[*size_of_peopl - 1]->sex = rand_data(sex_);
-			people[*size_of_peopl - 1]->Name = arr_name[rand_data(people[*size_of_peopl - 1]->sex)];
-			people[*size_of_peopl - 1]->Surname = arr_suname[rand_data(people[*size_of_peopl - 1]->sex)];
-			people[*size_of_peopl - 1]->Year = rand_data(year_);
-			people[*size_of_peopl - 1]->piesel = rand_data(piesel_);
-			program_n[i].setPeople(people, *size_of_peopl);
-			program_n[i].setName(program[i].getName());
-			program_n[i].setNumer(program[i].getNumer());
-		}
-		delete[] program;
-		program = program_n;
+		for (int i = 0; i < *size; i++)
+			program[i].addPerson(arr_name, arr_suname);
 		break;
 	}
+	
 }
-void dell(Uzond*& program, short* size, short* size_of_people)
+/*void dell(Uzond*& program, short* size, short* size_of_people)
 {
 	cout << "Usunąć użytkownika lub użytkownika? (u lub o)" << endl;
 	switch (_getch()) {
