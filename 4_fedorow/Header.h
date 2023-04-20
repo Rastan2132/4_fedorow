@@ -103,6 +103,7 @@ public:
     void edit(int index_1, string name, string surname, string year, string piesel, string sex);
 
     void sort(Uzond*& program, short size, short size_of_peopl);
+    void find(Uzond*& program, short& size, short& size_of_peopl);
 };
 
 void error();
@@ -110,14 +111,12 @@ void error();
 Uzond* create(short size, short size_of_peopl, vector<string> arrOfNameUrzant, vector<string> arrOfNames, vector<string> arrOfSurnames);
 void show(Uzond* program, short size, short size_of_peopl);
 void add(Uzond*& program, short* size, short* size_of_peopl, vector<string> arr_name, vector<string> arr_suname, vector<string>arr_of_name_urzant);
-//char* strstr_lower(char* str_a, char* str_b);
-//void sort(Uzond*& program, short size, short size_of_peopl);
+char* strstr_lower(char* str_a, char* str_b);
 bool isalpha_r(unsigned char a);
 bool isdigit_r(unsigned char a);
-//vector<char> stringToArrChar(const string& str);
+vector<char> stringToArrChar(const string& str);
 void edit(Uzond*& program, short index_1, short index_2);
 void dell(Uzond*& program, short* size, short* size_of_people);
-//void find(Uzond*& program, short& size, short& size_of_peopl);
 
 COORD getCursorPosition(void);
 void Clear(int x, int y, long cnt = 100);
@@ -128,7 +127,7 @@ COORD getConsoleSize();
 COLOR GetColor();
 WORD GetColorWord();
 void SetColor(COLOR Color);
-//void print_find(char* str, short str_size, char* keyword, short key_size, int text = -1, int back = -1);
+void print_find(char* str, short str_size, char* keyword, short key_size, int text = -1, int back = -1);
 
 void DeleteCh(char* str, int& cursor, int& term);
 void InsertCh(char* str, int buffer_size, int& cursor, int& term, char symb);

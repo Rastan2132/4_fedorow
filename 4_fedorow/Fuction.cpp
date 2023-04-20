@@ -240,93 +240,6 @@ void edit(Uzond*& program, short index_1, short index_2)
 	}
 	ShowCursor(0);
 }
-/*
-void find(Uzond*& program, short& size, short& size_of_peopl)
-{
-	if (program == nullptr || size == 0 || size_of_peopl == 0)
-	{
-		error();
-		return;
-	}
-	char* keyword = new char[MAXLINE]; keyword[0] = '\0';
-
-	COORD enter, hat;
-
-	system("cls");
-	cout << " Esc - Wejscie" << endl << endl;
-	cout << "Szukaj: ";
-	enter = getCursorPosition();
-
-	cout << endl << " #   " stru << endl;
-	hat = getCursorPosition();
-
-	COORD temp_pos;
-	short len = 0;
-
-	do
-	{
-		//Вводим ключевое слово для поиска.
-		{
-			int i = 0;
-			do
-			{
-				if (!stredit(keyword, MAXLINE, enter.X, enter.Y, len, false)) return;
-				len = (short)strlen(keyword);
-
-				for (i = 0; i < len; i++)
-				{
-					if (!(isdigit_r(keyword[i]) || isalpha_r(keyword[i]))) break;
-				}
-
-			} while (i != len || len == 0);
-		}
-
-		// Выводим результаты. 
-
-		setCursorPosition(hat.X, hat.Y);
-
-		//Очищаем предыдущие результаты поиска.
-		for (int i = 0; i < size; i++)
-		{
-			temp_pos = getCursorPosition();
-			Clear(temp_pos.X, temp_pos.Y + i);
-		}
-		setCursorPosition(hat.X, hat.Y);
-		system("cls");
-		cout << " Esc - Wejscie" << endl << endl;
-		cout << "Szukaj: ";
-		enter = getCursorPosition();
-
-		cout << endl << " #   " stru << endl;
-		hat = getCursorPosition();
-		//Выводим новые результаты поиска
-		for (short l = 0; l < size; l++)
-		{
-			cout << "Rezultat o " << l + 1 << " linii" << endl;
-			for (short i = 0; i < size_of_peopl; i++)
-			{
-				if (strstr_lower(stringToArrChar(program[l].getPeople()[i]->Name).data(), keyword)
-					|| strstr_lower(stringToArrChar(program[l].getPeople()[i]->Surname).data(), keyword)
-					|| strstr_lower(stringToArrChar(program[l].getPeople()[i]->piesel).data(), keyword)
-					|| strstr_lower(stringToArrChar(program[l].getPeople()[i]->Year).data(), keyword)
-					|| strstr_lower(stringToArrChar(program[l].getPeople()[i]->sex).data(), keyword))
-				{
-					cout << left << setw(3) << i + 1 << "  ";
-					print_find(stringToArrChar(program[l].getPeople()[i]->Name).data(), MAXLINE, keyword, MAXLINE, Red);
-					print_find(stringToArrChar(program[l].getPeople()[i]->Surname).data(), MAXLINE, keyword, MAXLINE, Red);
-					print_find(stringToArrChar(program[l].getPeople()[i]->Year).data(), MAXLINE, keyword, MAXLINE, Red);
-					print_find(stringToArrChar(program[l].getPeople()[i]->piesel).data(), MAXLINE, keyword, MAXLINE, Red);
-					print_find(stringToArrChar(program[l].getPeople()[i]->sex).data(), MAXLINE, keyword, MAXLINE, Red);
-
-					cout << endl;
-				}
-			}
-			cout << endl;
-		}
-	} while (true); //Пока не нажата Esc.
-
-	delete[] keyword; keyword = nullptr;
-}
 void print_find(char* str, short str_size, char* keyword, short key_size, int text, int back)
 {
 	if (str == nullptr || keyword == nullptr) return;
@@ -394,4 +307,4 @@ vector<char> stringToArrChar(const string& str) {
 	vector<char> char_array(str.begin(), str.end());
 	char_array.push_back('\0');
 	return char_array;
-}*/
+}
