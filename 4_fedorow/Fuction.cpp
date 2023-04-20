@@ -1,5 +1,19 @@
 ﻿#include "Header.h"
 
+bool chek_file(string file) {
+	ifstream in;
+	in.open(file, ios::in);
+
+	auto rez = 1;
+	if (in.is_open())
+	{
+		if (in.peek() == char_traits<char>::eof())
+			rez = 0;
+		in.close();
+	};
+	return rez;
+}
+
 void error()
 {
 	Beep(800, 150);
@@ -15,6 +29,7 @@ bool isalpha_r(unsigned char a)
 
 	return rez;
 }
+
 
 Uzond* create(short size, short size_of_peopl, vector<string> arrOfNameUrzant, vector<string> arrOfNames, vector<string> arrOfSurnames) {
 	Uzond* arr = new Uzond[size];
@@ -308,3 +323,4 @@ vector<char> stringToArrChar(const string& str) {
 	char_array.push_back('\0');
 	return char_array;
 }
+

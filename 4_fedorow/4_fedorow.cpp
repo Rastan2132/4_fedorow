@@ -5,15 +5,27 @@ int main()
 	bool work = 1;
 	short size = 0;
 	short urz_num, p_num;
-	size = rand() % 10 + 1;
-	short size_of_peopl = rand() % 10 + 1;
+	short size_of_peopl = 0;
 	Uzond* program;
 	
 	vector<string> NAMES = { "Alexander","Maxim","Dmitry","Sergei","Ivan","Anna","Maria","Olga","Elena","Natalia" };
 	vector<string> SURNAMES = { "Ivanov","Petrov","Sidorov","Smirnov","Kuznetsov","Ivanova","Petrova","Sidorova","Smirnova","Kuznetsova" };
-	vector<string>NAMES_of_Uzond = { "Urzad Pracy","Urzad Spraw","Urzad Skarbowy","Urzad s. cywilnego" };
+	vector<string>NAMES_of_Uzond = { "Urzad_Pracy","Urzad_Spraw","Urzad_Skarbowy","Urzad_s._cywilnego" };
 
-	program = create(size, size_of_peopl, NAMES_of_Uzond, NAMES, SURNAMES);
+	if (chek_file("Users.txt") == 0)
+	{
+		size = rand() % 10 + 1;
+		size_of_peopl = rand() % 10 + 1;
+		program = create(size, size_of_peopl, NAMES_of_Uzond, NAMES, SURNAMES);
+		}
+	else
+		program[1].initForFile(program, &size, &size_of_peopl);
+		
+	if (size < 0)
+	{
+		error();
+		size = 0;
+	}
 	ShowCursor(0);
 	do
 	{
@@ -47,4 +59,6 @@ int main()
 			break;
 		}
 	} while (work);
+	if (!(work = program[1].save(program, size, size_of_peopl)))
+		error();
 }

@@ -52,8 +52,9 @@ private:
         string sex;
     public:
         Users() : Name(""), Surname(""), Year(""), piesel(""), sex("") {}
-
-        Users(string name, string surname, string year, string p, string s);
+        Users(string name, string surname, string year, string pesel, string sex)
+            : Name(name), Surname(surname), Year(year), piesel(pesel), sex(sex) {}
+       
         Users(const Users& other);
         Users& operator=(const Users& other) {
             if (this != &other) {
@@ -66,7 +67,6 @@ private:
             return *this;
         }
         void show(Uzond program, short size_of_people);
-
         friend class Uzond;
     };
 
@@ -83,6 +83,9 @@ public:
 
     void setPeople(Users** people_, int size);
     Users** getPeople() const { return people; }
+
+    int get_size_Of_arr_peopls(){ return size_Of_arr_peopls; }
+    void set_size_Of_arr_peopls(int size_Of_arr_peopls_) { size_Of_arr_peopls = size_Of_arr_peopls_; }
 
     void setName(string Name_) { Name = Name_; }
     string getName() const { return Name; }
@@ -102,8 +105,28 @@ public:
 
     void edit(int index_1, string name, string surname, string year, string piesel, string sex);
 
+    bool initForFile(Uzond*& program, short* size, short* size_of_peopl);
     void sort(Uzond*& program, short size, short size_of_peopl);
     void find(Uzond*& program, short& size, short& size_of_peopl);
+    bool save(Uzond* program, short size, short size_of_peopl);
+
+    Uzond& operator=(const Uzond& other) {
+        if (this != &other) { 
+            delete[] people;
+
+            Name = other.Name;
+            Numer = other.Numer;
+            size_Of_arr_peopls = other.size_Of_arr_peopls;
+            people = new Users * [size_Of_arr_peopls];
+            for (int i = 0; i < size_Of_arr_peopls; i++) {
+                people[i] = new Users(*other.people[i]); 
+            }
+        }
+        return *this;
+    }
+  
+
+
 };
 
 void error();
@@ -117,6 +140,7 @@ bool isdigit_r(unsigned char a);
 vector<char> stringToArrChar(const string& str);
 void edit(Uzond*& program, short index_1, short index_2);
 void dell(Uzond*& program, short* size, short* size_of_people);
+bool chek_file(string file);
 
 COORD getCursorPosition(void);
 void Clear(int x, int y, long cnt = 100);

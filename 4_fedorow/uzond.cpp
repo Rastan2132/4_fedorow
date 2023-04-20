@@ -1,14 +1,7 @@
 ﻿#pragma once
 #include "Header.h"
 
- Uzond::Users::Users(string name, string surname, string year, string p, string s)
-{
-    Name = name;
-    Surname = surname;
-    Year = year;
-    piesel = p;
-    sex = s;
-        }
+
  Uzond::Users::Users(const Users& other) {
     Name = other.Name;
     Surname = other.Surname;
@@ -401,4 +394,58 @@ Uzond::Uzond()
      } while (true); //Пока не нажата Esc.
 
      delete[] keyword; keyword = nullptr;
+ }
+
+ bool Uzond::save(Uzond* program, short size, short size_of_peopl) {
+     ofstream out("Uzonds.txt");
+     if (!out.is_open())
+         return false;
+
+     out << size << " " << size_of_peopl << " ";
+
+     for (short i = 0; i < size; i++) {
+         out << program[i].Name << " " << program[i].Numer << " ";
+         for (short j = 0; j < size_of_peopl; j++) {
+             out << program[i].people[j]->Name << " " << program[i].people[j]->Surname << " "
+                 << program[i].people[j]->Year << " " << program[i].people[j]->piesel << " "
+                 << program[i].people[j]->sex << " ";
+         }
+         out << endl;
+     }
+
+     out.close();
+     return true;
+ }
+
+ bool Uzond::initForFile(Uzond*& program, short* size, short* size_of_peopl) {
+     ifstream in("Uzonds.txt");
+     if (!in.is_open()) {
+         *size = -1; // if error *size = -1;
+         return false;
+     }
+
+     in >> *size >> *size_of_peopl;
+
+     Uzond* program_n = new Uzond[*size];
+     for (int i = 0; i < *size; i++) {
+         program_n[i].people = nullptr;
+         string name_u, numer;
+         in >> name_u >> numer;
+         program_n[i].Name = name_u;
+         program_n[i].Numer = numer;
+
+         if (*size_of_peopl > 0) {
+             Users** people = new Users * [*size_of_peopl];
+             for (int j = 0; j < *size_of_peopl; j++) {
+                 string name, surname, year, pesel, sex;
+                 in >> name >> surname >> year >> pesel >> sex;
+                 people[j] = new Users(name, surname, year, pesel, sex);
+             }
+             program_n[i].people = people;
+         }
+     }
+
+     program = program_n;
+     in.close();
+     return true;
  }
