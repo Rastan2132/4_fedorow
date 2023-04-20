@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 #include "Header.h"
 
  Uzond::Users::Users(string name, string surname, string year, string p, string s)
@@ -205,4 +205,113 @@ Uzond::Uzond()
 
      delete[] people;
      people = new_people;
+ }
+
+
+
+ void Uzond::sort(Uzond*& program, short size, short size_of_peopl)
+ {
+     cout << endl << "Wybiesz:\n1 - posortowac za Name\n2 - posortowac za Surname\n3 - posortowac za sex\n4 - posortowac za piesel\n5 - posortowac za Year\nQ - Wyjść\n";
+     cout << endl;
+     switch (_getch())
+     {
+     case '1':
+         for (short l = 0; l < size; l++)
+         {
+             for (short i = 0; i < size_of_peopl; i++) {
+                 for (short j = i + 1; j < size_of_peopl; j++) {
+                     if (program[l].getPeople()[i]->Name.compare(program[l].getPeople()[j]->Name) > 0) {
+                         swap(program[l].getPeople()[i]->Name, program[l].getPeople()[j]->Name);
+                         swap(program[l].getPeople()[i]->Surname, program[l].getPeople()[j]->Surname);
+                         swap(program[l].getPeople()[i]->sex, program[l].getPeople()[j]->sex);
+                         swap(program[l].getPeople()[i]->piesel, program[l].getPeople()[j]->piesel);
+                         swap(program[l].getPeople()[i]->Year, program[l].getPeople()[j]->Year);
+                     }
+                 }
+             }
+         }
+         cout << endl << "Sorted" << endl;
+         system("pause");
+         break;
+     case '2':
+         for (short l = 0; l < size; l++)
+         {
+             for (short i = 0; i < size_of_peopl; i++) {
+                 for (short j = i + 1; j < size_of_peopl; j++) {
+                     if (program[l].getPeople()[i]->Surname.compare(program[l].getPeople()[j]->Surname) > 0) {
+                         swap(program[l].getPeople()[i]->Name, program[l].getPeople()[j]->Name);
+                         swap(program[l].getPeople()[i]->Surname, program[l].getPeople()[j]->Surname);
+                         swap(program[l].getPeople()[i]->sex, program[l].getPeople()[j]->sex);
+                         swap(program[l].getPeople()[i]->piesel, program[l].getPeople()[j]->piesel);
+                         swap(program[l].getPeople()[i]->Year, program[l].getPeople()[j]->Year);
+                     }
+                 }
+             }
+         }
+         cout << endl << "Sorted" << endl;
+         system("pause");
+         break;
+     case '3':
+         for (short l = 0; l < size; l++)
+         {
+             for (short i = 0; i < size_of_peopl; i++) {
+                 for (short j = i + 1; j < size_of_peopl; j++) {
+                     if (program[l].getPeople()[i]->sex.compare(program[l].getPeople()[j]->sex) > 0) {
+                         swap(program[l].getPeople()[i]->Name, program[l].getPeople()[j]->Name);
+                         swap(program[l].getPeople()[i]->Surname, program[l].getPeople()[j]->Surname);
+                         swap(program[l].getPeople()[i]->sex, program[l].getPeople()[j]->sex);
+                         swap(program[l].getPeople()[i]->piesel, program[l].getPeople()[j]->piesel);
+                         swap(program[l].getPeople()[i]->Year, program[l].getPeople()[j]->Year);
+                     }
+                 }
+             }
+         }
+         cout << endl << "Sorted" << endl;
+         system("pause");
+         break;
+     case '4':
+         for (short l = 0; l < size; l++)
+         {
+             for (short i = 0; i < size_of_peopl; i++) {
+                 for (short j = i + 1; j < size_of_peopl; j++) {
+                     if (program[l].getPeople()[i]->piesel.compare(program[l].getPeople()[j]->piesel) > 0) {
+                         swap(program[l].getPeople()[i]->Name, program[l].getPeople()[j]->Name);
+                         swap(program[l].getPeople()[i]->Surname, program[l].getPeople()[j]->Surname);
+                         swap(program[l].getPeople()[i]->sex, program[l].getPeople()[j]->sex);
+                         swap(program[l].getPeople()[i]->piesel, program[l].getPeople()[j]->piesel);
+                         swap(program[l].getPeople()[i]->Year, program[l].getPeople()[j]->Year);
+                     }
+                 }
+             }
+         }
+         cout << endl << "Sorted" << endl;
+         system("pause");
+         break;
+     case '5':
+         for (short l = 0; l < size; l++)
+         {
+             for (short i = 0; i < size_of_peopl; i++) {
+                 for (short j = i + 1; j < size_of_peopl; j++) {
+                     if (program[l].getPeople()[i]->Year.compare(program[l].getPeople()[j]->Year) > 0) {
+                         swap(program[l].getPeople()[i]->Name, program[l].getPeople()[j]->Name);
+                         swap(program[l].getPeople()[i]->Surname, program[l].getPeople()[j]->Surname);
+                         swap(program[l].getPeople()[i]->sex, program[l].getPeople()[j]->sex);
+                         swap(program[l].getPeople()[i]->piesel, program[l].getPeople()[j]->piesel);
+                         swap(program[l].getPeople()[i]->Year, program[l].getPeople()[j]->Year);
+                     }
+                 }
+             }
+         }
+         cout << endl << "Sorted" << endl;
+         system("pause");
+         break;
+     case 'q':
+     case 'Q':
+         break;
+     default:
+     {
+         cout << endl << "Press 1, 2 or Q " << endl;
+         system("pause");
+     }
+     }
  }

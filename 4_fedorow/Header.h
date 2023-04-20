@@ -1,4 +1,4 @@
-#pragma once
+п»ї#pragma once
 #define _CRT_SECURE_NO_WARNINGS
 #include <iomanip>
 #include <iostream>
@@ -24,7 +24,7 @@ using namespace std;
 
 #define MANIP setw(MAXLINE) <<  left 
 
-int rand_data(string sex);								/// от 0 до 9 муж. от 10 до 19 жен
+int rand_data(string sex);								/// пїЅпїЅ 0 пїЅпїЅ 9 пїЅпїЅпїЅ. пїЅпїЅ 10 пїЅпїЅ 19 пїЅпїЅпїЅ
 string rand_data(int max);
 
 struct COLOR
@@ -66,7 +66,7 @@ private:
             return *this;
         }
         void show(Uzond program, short size_of_people);
-        void show_ones(Uzond program, int j);
+
         friend class Uzond;
     };
 
@@ -100,7 +100,9 @@ public:
     void show(Uzond program, short size_of_people);
     void show_ones(Uzond program, int j);
 
-    void edit( int index_1, string name, string surname, string year, string piesel, string sex);
+    void edit(int index_1, string name, string surname, string year, string piesel, string sex);
+
+    void sort(Uzond*& program, short size, short size_of_peopl);
 };
 
 void error();
@@ -130,4 +132,3 @@ void SetColor(COLOR Color);
 
 void DeleteCh(char* str, int& cursor, int& term);
 void InsertCh(char* str, int buffer_size, int& cursor, int& term, char symb);
-
