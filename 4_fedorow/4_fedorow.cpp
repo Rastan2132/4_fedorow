@@ -18,29 +18,24 @@ int main()
 	do
 	{
 		show(program, size, size_of_peopl);
-
 		switch (_getch())
 		{
 		case (113):
 			work = false;
 			break;
 		case (97):
-
 			add(program, &size, &size_of_peopl, NAMES, SURNAMES, NAMES_of_Uzond);
 			break;
 		case (100):
 			dell(program, &size, &size_of_peopl);
 			break;
 		case (101):
-
 			do {
-
 				cout << "wprowadź numer urzendu i numer osoby" << endl;
 				cin >> urz_num >> p_num;
 				if (urz_num > 0 && p_num > 0 && urz_num <= size && p_num <= size_of_peopl)
 					break;
 				error();
-
 			} while (true);
 			edit(program, urz_num - 1, p_num - 1);
 			break;

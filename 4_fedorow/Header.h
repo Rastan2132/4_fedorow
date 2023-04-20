@@ -24,7 +24,7 @@ using namespace std;
 
 #define MANIP setw(MAXLINE) <<  left 
 
-int rand_data(string sex);								/// �� 0 �� 9 ���. �� 10 �� 19 ���
+int rand_data(string sex);
 string rand_data(int max);
 
 struct COLOR
