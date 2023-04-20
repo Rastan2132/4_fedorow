@@ -42,7 +42,7 @@ int main()
 				error();
 
 			} while (true);
-		//	edit(program, urz_num - 1, p_num - 1);
+			edit(program, urz_num - 1, p_num - 1);
 			break;
 		case (115):
 			//sort(program, size, size_of_peopl);

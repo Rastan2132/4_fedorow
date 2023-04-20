@@ -66,6 +66,7 @@ private:
             return *this;
         }
         void show(Uzond program, short size_of_people);
+        void show_ones(Uzond program, int j);
         friend class Uzond;
     };
 
@@ -93,10 +94,13 @@ public:
     Users* getPerson(int index) const;
     void removeUzond(Uzond*& program, short size, short index);
     void removePerson(int index);
+
     void addPerson(vector<string> arrOfNames, vector<string> arrOfSurnames);
 
-
     void show(Uzond program, short size_of_people);
+    void show_ones(Uzond program, int j);
+
+    void edit( int index_1, string name, string surname, string year, string piesel, string sex);
 };
 
 void error();
@@ -109,7 +113,7 @@ void add(Uzond*& program, short* size, short* size_of_peopl, vector<string> arr_
 bool isalpha_r(unsigned char a);
 bool isdigit_r(unsigned char a);
 //vector<char> stringToArrChar(const string& str);
-//void edit(Uzond*& program, short index_1, short index_2);
+void edit(Uzond*& program, short index_1, short index_2);
 void dell(Uzond*& program, short* size, short* size_of_people);
 //void find(Uzond*& program, short& size, short& size_of_peopl);
 
@@ -126,3 +130,4 @@ void SetColor(COLOR Color);
 
 void DeleteCh(char* str, int& cursor, int& term);
 void InsertCh(char* str, int buffer_size, int& cursor, int& term, char symb);
+

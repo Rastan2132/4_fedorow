@@ -168,7 +168,7 @@ void dell(Uzond*& program, short* size, short* size_of_people)
 	}
 	}
 }
-/*
+
 void edit(Uzond*& program, short index_1, short index_2)
 {
 	system("cls");
@@ -180,8 +180,7 @@ void edit(Uzond*& program, short index_1, short index_2)
 	string line;
 	string name = "", surname = " ", Year = " ", Piesel = " ", Sex = " ";
 	cout << "Wstępne dane:" << endl;
-	cout << MANIP << program[index_1].getPeople()[index_2]->Name << " " << MANIP << program[index_1].getPeople()[index_2]->Surname << " " << MANIP << program[index_1].getPeople()[index_2]->Year << " " << MANIP << program[index_1].getPeople()[index_2]->piesel << " " << MANIP << program[index_1].getPeople()[index_2]->sex << " ";
-	cout << endl;
+	program[index_1].show_ones(*program, index_2);
 	bool valid_input = false;
 	cout << "Podaj Name Surname Year Pesel i sex: ";
 	while (!valid_input) {
@@ -233,17 +232,14 @@ void edit(Uzond*& program, short index_1, short index_2)
 				error();
 			}
 			else {
-				program[index_1].getPeople()[index_2]->Name = name;
-				program[index_1].getPeople()[index_2]->Surname = surname;
-				program[index_1].getPeople()[index_2]->Year = Year;
-				program[index_1].getPeople()[index_2]->piesel = Piesel;
-				program[index_1].getPeople()[index_2]->sex = Sex;
+			
+				program[index_1].edit(index_2, name, surname, Year, Piesel, Sex);
 				valid_input = true;
 			}
 		}
 	}
 	ShowCursor(0);
-}
+}/*
 void sort(Uzond*& program, short size, short size_of_peopl)
 {
 	cout << endl << "Wybiesz:\n1 - posortowac za Name\n2 - posortowac za Surname\n3 - posortowac za sex\n4 - posortowac za piesel\n5 - posortowac za Year\nQ - Wyjść\n";

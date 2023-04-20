@@ -30,7 +30,7 @@ void Uzond::Users::show(Uzond program, short size_of_people)
     }
         cout << endl << endl;
 }
-       
+
 Uzond::Uzond() 
 {
     people = nullptr;
@@ -184,3 +184,25 @@ Uzond::Uzond()
      cout << endl << endl;
  }
 
+ void Uzond::show_ones(Uzond program, int j)
+ {
+
+     Uzond::Users* person = program.getPerson(j);
+     if (person != nullptr) {
+         cout << right << setw(3) << setfill('0') << j + 1 << setfill(' ') << " " << MANIP << person->Name << " " << MANIP << person->Surname << " " << MANIP << person->Year << " " << MANIP << person->piesel << " " << MANIP << person->sex << " ";
+     }
+     cout << endl << endl;
+ }
+
+ void Uzond::edit( int index_1, string name, string surname, string year, string piesel, string sex) {
+  
+     Users* person = new Users(name, surname, year, piesel, sex);
+     Users** new_people = new Users * [size_Of_arr_peopls];
+     for (int i = 0; i < size_Of_arr_peopls; i++) {
+         new_people[i] = people[i];
+     }
+     new_people[index_1] = person;
+
+     delete[] people;
+     people = new_people;
+ }
