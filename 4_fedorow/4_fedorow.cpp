@@ -6,20 +6,23 @@ int main()
 	short size = 0;
 	short urz_num, p_num;
 	short size_of_peopl = 0;
-	Uzond* program;
-	
+	Uzond* program{nullptr};
+
 	vector<string> NAMES = { "Alexander","Maxim","Dmitry","Sergei","Ivan","Anna","Maria","Olga","Elena","Natalia" };
 	vector<string> SURNAMES = { "Ivanov","Petrov","Sidorov","Smirnov","Kuznetsov","Ivanova","Petrova","Sidorova","Smirnova","Kuznetsova" };
 	vector<string>NAMES_of_Uzond = { "Urzad_Pracy","Urzad_Spraw","Urzad_Skarbowy","Urzad_s._cywilnego" };
 
 	if (chek_file("Users.txt") == 0)
-	{
+	{ 
 		size = rand() % 10 + 1;
 		size_of_peopl = rand() % 10 + 1;
 		program = create(size, size_of_peopl, NAMES_of_Uzond, NAMES, SURNAMES);
 		}
-	else
-		program[1].initForFile(program, &size, &size_of_peopl);
+	else 
+	{
+		program = create(2, 8, NAMES_of_Uzond, NAMES, SURNAMES);
+		program[0].initForFile(program, &size, &size_of_peopl);
+	}
 		
 	if (size < 0)
 	{
