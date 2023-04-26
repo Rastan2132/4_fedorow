@@ -111,7 +111,7 @@ public:
 
     bool initForFile(Uzond*& program);
     void sort(Uzond*& program);
-    void find(Uzond*& program, short& size, short& size_of_peopl);
+    void find(Uzond*& program);
     bool save(Uzond* program);
 
     Uzond& operator=(const Uzond& other) {

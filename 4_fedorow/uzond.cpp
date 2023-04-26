@@ -299,9 +299,9 @@ Uzond::Uzond()
      }
  }
 
- void Uzond::find(Uzond*& program, short& size, short& size_of_peopl)
+ void Uzond::find(Uzond*& program)
  {
-     if (program == nullptr || size == 0 || size_of_peopl == 0)
+     if (program == nullptr || program->get_size() == 0 || program->get_size_Of_arr_peopls() == 0)
      {
          error();
          return;
@@ -361,7 +361,7 @@ Uzond::Uzond()
          for (short l = 0; l < size; l++)
          {
              cout << "Rezultat o " << l + 1 << " linii" << endl;
-             for (short i = 0; i < size_of_peopl; i++)
+             for (short i = 0; i < program->get_size_Of_arr_peopls(); i++)
              {
                  if (strstr_lower(stringToArrChar(program[l].getPeople()[i]->Name).data(), keyword)
                      || strstr_lower(stringToArrChar(program[l].getPeople()[i]->Surname).data(), keyword)

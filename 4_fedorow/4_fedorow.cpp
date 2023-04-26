@@ -56,9 +56,9 @@ int main()
 		case (115):
 			program->sort(program);
 			break;
-		/*case (121):
-			program[1].find(program, size, size_of_peopl);
-			break;*/
+		case (121):
+			program->find(program);
+			break;
 		}
 	} while (work);
 
