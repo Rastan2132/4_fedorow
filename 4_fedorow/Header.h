@@ -74,7 +74,8 @@ private:
     Users** people;
     string Name;
     string Numer;
-    int size_Of_arr_peopls;
+    short  size_Of_arr_peopls;
+    short size;
 
 public:
     Uzond();
@@ -87,6 +88,9 @@ public:
     int get_size_Of_arr_peopls(){ return size_Of_arr_peopls; }
     void set_size_Of_arr_peopls(int size_Of_arr_peopls_) { size_Of_arr_peopls = size_Of_arr_peopls_; }
 
+    int get_size() { return size; }
+    void set_size(short size_) { size = size_; }
+
     void setName(string Name_) { Name = Name_; }
     string getName() const { return Name; }
 
@@ -95,20 +99,20 @@ public:
 
     void createPeopleArray(int size_of_people, vector<string> arrOfNames, vector<string> arrOfSurnames);
     Users* getPerson(int index) const;
-    void removeUzond(Uzond*& program, short size, short index);
+    void removeUzond(Uzond*& program, short index);
     void removePerson(int index);
 
     void addPerson(vector<string> arrOfNames, vector<string> arrOfSurnames);
 
-    void show(Uzond program, short size_of_people);
+    void show(Uzond program);
     void show_ones(Uzond program, int j);
 
     void edit(int index_1, string name, string surname, string year, string piesel, string sex);
 
-    bool initForFile(Uzond*& program, short* size, short* size_of_peopl);
+    bool initForFile(Uzond*& program);
     void sort(Uzond*& program, short size, short size_of_peopl);
     void find(Uzond*& program, short& size, short& size_of_peopl);
-    bool save(Uzond* program, short size, short size_of_peopl);
+    bool save(Uzond* program);
 
     Uzond& operator=(const Uzond& other) {
         if (this != &other) { 
@@ -131,14 +135,14 @@ public:
 void error();
 
 Uzond* create(short size, short size_of_peopl, vector<string> arrOfNameUrzant, vector<string> arrOfNames, vector<string> arrOfSurnames);
-void show(Uzond* program, short size, short size_of_peopl);
-void add(Uzond*& program, short* size, short* size_of_peopl, vector<string> arr_name, vector<string> arr_suname, vector<string>arr_of_name_urzant);
+void show(Uzond* program);
+void add(Uzond*& program, vector<string> arr_name, vector<string> arr_suname, vector<string>arr_of_name_urzant);
 char* strstr_lower(char* str_a, char* str_b);
 bool isalpha_r(unsigned char a);
 bool isdigit_r(unsigned char a);
 vector<char> stringToArrChar(const string& str);
 void edit(Uzond*& program, short index_1, short index_2);
-void dell(Uzond*& program, short* size, short* size_of_people);
+void dell(Uzond*& program);
 bool chek_file(string file);
 
 COORD getCursorPosition(void);

@@ -91,94 +91,100 @@ string rand_data(int max)
 	return nullptr;
 }
 
-void show(Uzond* program, short size, short size_of_people)
+void show(Uzond* program)
 {
 	system("cls");
 	cout << "----------------------------------------------------------------------------------------------------\n";
 	cout << MENU << endl;
 	cout << "----------------------------------------------------------------------------------------------------\n";
-	cout << "					---=== UZOND BOOK ===--- your Uzond: " << size << endl;
+	cout << "					---=== UZOND BOOK ===--- your Uzond: " << program->get_size() << endl;
 	cout << "----------------------------------------------------------------------------------------------------\n";
 	cout << stru << endl;
 	cout << "----------------------------------------------------------------------------------------------------\n";
-	for (short i = 0; i < size; i++)
+	for (short i = 0; i < program->get_size(); i++)
 	{
 		cout << right << setw(3) << setfill('0') << i + 1 << setfill(' ') << " ";
 		cout << MANIP << program[i].getName() << " " << MANIP << program[i].getNumer() << endl;
 		cout << endl << " ";
-		program[i].show(program[i], size_of_people);
+		program[i].show(program[i]);
 		
 	}
 }
 
-void add(Uzond*& program, short* size, short* size_of_peopl, vector<string> arr_name, vector<string> arr_suname, vector<string>arr_of_name_urzant)
+void add(Uzond*& program, vector<string> arr_name, vector<string> arr_suname, vector<string>arr_of_name_urzant)
 {
 	cout << "Сhcesz dodać urzond lub osobę(u lub o)" << endl;
 	Uzond* program_n = nullptr;
 	switch (_getch())
 	{
 	case (117): {
-		(*size)++;
-		program_n = new Uzond[*size];
-		for (int i = 0; i < *size - 1; i++) {
+		short size = program->get_size();
+		size++;
+		program->set_size(size);
+		program_n = new Uzond[size];
+		program_n->set_size(size);
+		for (int i = 0; i < size - 1; i++) {
 			program_n[i] = program[i];
 		}
-		program_n[*size - 1].setName(arr_of_name_urzant[rand() % 4]);
-		program_n[*size - 1].setNumer(rand_data(num_));
-		program_n[*size-1].createPeopleArray(*size_of_peopl, arr_name, arr_suname);
+		program_n[size - 1].setName(arr_of_name_urzant[rand() % 4]);
+		program_n[size - 1].setNumer(rand_data(num_));
+		program_n[size-1].createPeopleArray(program->get_size_Of_arr_peopls(), arr_name, arr_suname);
 
 		program = program_n;
 
 		break;
 	}
 	case (111):
-		(*size_of_peopl)++;
-		for (int i = 0; i < *size; i++)
+		short size_of_peopl = program->get_size_Of_arr_peopls();
+		size_of_peopl++;
+		for(short i=0; i< size_of_peopl;i++)
+			program[i].set_size_Of_arr_peopls(size_of_peopl);
+		for (int i = 0; i < program->get_size(); i++)
 			program[i].addPerson(arr_name, arr_suname);
 		break;
 	}
 	
 }
-void dell(Uzond*& program, short* size, short* size_of_people)
+void dell(Uzond*& program)
 {
 	cout << "Usunąć użytkownika lub użytkownika? (u lub o)" << endl;
 	switch (_getch()) {
 	case (117):
 	{
-		if (*size <= 0) {
+		if (program->get_size() <= 0) {
 			error();
 		}
-		cout << "Wybierz numer Uzond, który chcesz usunąć (1 - " << *size << "):" << endl;
+		cout << "Wybierz numer Uzond, który chcesz usunąć (1 - " << program->get_size() << "):" << endl;
 		int num = 0;
 		cin >> num;
-		if (num < 1 || num > *size) {
+		if (num < 1 || num > program->get_size()) {
 			error();
 		}
-		for (int i = 0; i < *size_of_people; i++) {
-			program[i].removeUzond(program,*size, num);
-		}
-		(*size)--;
-		
+			program->removeUzond(program, num);
+		short size = program->get_size();
+		size--;
+		program->set_size(size);
 		break;
 	}
 
 	case (111):
 	{
-		if (*size_of_people <= 0) {
-			error();
-		}
 
-		cout << "Wybierz numer użytkownika, którego chcesz usunąć(1 - " << *size_of_people << "):" << endl;
+		cout << "Wybierz numer użytkownika, którego chcesz usunąć(1 - " << program->get_size_Of_arr_peopls() << "):" << endl;
 		int num = 0;
 		cin >> num;
-		if (num < 1 || num > *size_of_people) {
+		if (num < 1 || num >  program->get_size_Of_arr_peopls()) {
 			error();
 		}
 
-		for (int i = 0; i < *size; i++) {
+		for (int i = 0; i < program->get_size(); i++) {
 			program[i].removePerson(num);
 		}
-		(*size_of_people)--;
+		short size = program->get_size_Of_arr_peopls();
+		size--;
+		for(short i =0; i <size; i++)
+		program[i].set_size_Of_arr_peopls(size);
+		break;
 		break;
 	}
 	}

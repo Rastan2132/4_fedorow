@@ -102,11 +102,10 @@ Uzond::Uzond()
      }
      return people[index];
  }
- void Uzond::removeUzond(Uzond*& program, short size, short index) {
+ void Uzond::removeUzond(Uzond*& program,short index) {
      if (index < 0 || index >= size) {
          return;
      }
-     delete[] program[index].getPeople();
      Uzond* new_program = new Uzond[size - 1];
      int j = 0;
      for (int i = 0; i < size; i++) {
@@ -115,9 +114,7 @@ Uzond::Uzond()
              j++;
          }
      }
-     delete[] program;
      program = new_program;
-     size--;
  }
 
  void Uzond::removePerson(int index) {
@@ -135,9 +132,7 @@ Uzond::Uzond()
              delete people[i];
          }
      }
-     delete[] people;
      people = new_people;
-     size_Of_arr_peopls--;
  }
 
  void Uzond::addPerson(vector<string> arrOfNames, vector<string> arrOfSurnames) {
@@ -148,20 +143,15 @@ Uzond::Uzond()
      string piesel = rand_data(piesel_);
 
      Users* person = new Users(name, surname, year, piesel, sex);
-     Users** new_people = new Users * [size_Of_arr_peopls + 1];
-     for (int i = 0; i < size_Of_arr_peopls; i++) {
-         new_people[i] = people[i];
-     }
-     new_people[size_Of_arr_peopls] = person;
-     delete[] people;
-     people = new_people;
-     size_Of_arr_peopls++;
+     Users** new_people = new Users * [size_Of_arr_peopls];
+     new_people = people;
+     new_people[size_Of_arr_peopls-1] = person;
  }
 
- void Uzond::show(Uzond program, short size_of_people)
+ void Uzond::show(Uzond program)
  {
 
-     for (short j = 0; j < size_of_people; j++)
+     for (short j = 0; j < size_Of_arr_peopls; j++)
      {
          Uzond::Users* person = program.getPerson(j);
          if (person != nullptr) {
@@ -396,16 +386,16 @@ Uzond::Uzond()
      delete[] keyword; keyword = nullptr;
  }
 
- bool Uzond::save(Uzond* program, short size, short size_of_peopl) {
+ bool Uzond::save(Uzond* program) {
      ofstream out("Uzonds.txt");
      if (!out.is_open())
          return false;
 
-     out << size << " " << size_of_peopl << " ";
+     out << size << " " << program->get_size_Of_arr_peopls() << " ";
 
      for (short i = 0; i < size; i++) {
          out << program[i].Name << " " << program[i].Numer << " ";
-         for (short j = 0; j < size_of_peopl; j++) {
+         for (short j = 0; j < program->get_size_Of_arr_peopls(); j++) {
              out << program[i].people[j]->Name << " " << program[i].people[j]->Surname << " "
                  << program[i].people[j]->Year << " " << program[i].people[j]->piesel << " "
                  << program[i].people[j]->sex << " ";
@@ -417,26 +407,31 @@ Uzond::Uzond()
      return true;
  }
 
- bool Uzond::initForFile(Uzond*& program, short* size, short* size_of_peopl) {
+ bool Uzond::initForFile(Uzond*& program) {
      ifstream in("Uzonds.txt");
      if (!in.is_open()) {
-         *size = -1; // if error *size = -1;
+         program->set_size( - 1); // if error *size = -1;
          return false;
      }
+     short size, size_of_peopl;
+     in >> size >> size_of_peopl;
 
-     in >> *size >> *size_of_peopl;
+     for (short i = 0; i < size; i++) 
+         program[i].set_size(size);
+     for (short i = 0; i < size_of_peopl; i++) 
+     program[i].set_size_Of_arr_peopls(size_of_peopl);
 
-     Uzond* program_n = new Uzond[*size];
-     for (int i = 0; i < *size; i++) {
+     Uzond* program_n = new Uzond[size];
+     for (int i = 0; i < size; i++) {
          program_n[i].people = nullptr;
          string name_u, numer;
          in >> name_u >> numer;
          program_n[i].Name = name_u;
          program_n[i].Numer = numer;
 
-         if (*size_of_peopl > 0) {
-             Users** people = new Users * [*size_of_peopl];
-             for (int j = 0; j < *size_of_peopl; j++) {
+         if (size_of_peopl > 0) {
+             Users** people = new Users * [size_of_peopl];
+             for (int j = 0; j < size_of_peopl; j++) {
                  string name, surname, year, pesel, sex;
                  in >> name >> surname >> year >> pesel >> sex;
                  people[j] = new Users(name, surname, year, pesel, sex);

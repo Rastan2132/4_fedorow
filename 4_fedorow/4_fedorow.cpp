@@ -3,9 +3,7 @@
 int main()
 {
 	bool work = 1;
-	short size = 0;
 	short urz_num, p_num;
-	short size_of_peopl = 0;
 	Uzond* program{nullptr};
 
 	vector<string> NAMES = { "Alexander","Maxim","Dmitry","Sergei","Ivan","Anna","Maria","Olga","Elena","Natalia" };
@@ -14,36 +12,40 @@ int main()
 
 	if (chek_file("Uzonds.txt") == 0)
 	{ 
-		size = rand() % 10 + 1;
-		size_of_peopl = rand() % 10 + 1;
+		short size = rand() % 10 + 1;
+		short size_of_peopl = rand() % 10 + 1;
 		program = create(size, size_of_peopl, NAMES_of_Uzond, NAMES, SURNAMES);
+		
+			program->set_size(size);
+			program->set_size_Of_arr_peopls(size_of_peopl);
 		}
 	else 
 	{
-		program = create(1, 1, NAMES_of_Uzond, NAMES, SURNAMES);
-		program[0].initForFile(program, &size, &size_of_peopl);
+		program->initForFile(program);
 	}
 		
-	if (size < 0)
+	if (program->get_size() < 0)
 	{
 		error();
-		size = 0;
+		program->set_size( 0);
 	}
+	
+
 	ShowCursor(0);
 	do
 	{
-		show(program, size, size_of_peopl);
+		show(program);
 		switch (_getch())
 		{
 		case (113):
 			work = false;
 			break;
 		case (97):
-			add(program, &size, &size_of_peopl, NAMES, SURNAMES, NAMES_of_Uzond);
+			add(program, NAMES, SURNAMES, NAMES_of_Uzond);
 			break;
 		case (100):
-			dell(program, &size, &size_of_peopl);
-			break;
+			dell(program);
+			break;/*
 		case (101):
 			do {
 				cout << "wprowadź numer urzendu i numer osoby" << endl;
@@ -59,9 +61,11 @@ int main()
 			break;
 		case (121):
 			program[1].find(program, size, size_of_peopl);
-			break;
+			break;*/
 		}
 	} while (work);
-	if (!(work = program[1].save(program, size, size_of_peopl)))
+
+	if (!(work = program[1].save(program)))
 		error();
+	return 0;
 }
