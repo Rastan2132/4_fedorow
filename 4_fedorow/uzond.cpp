@@ -416,11 +416,7 @@ Uzond::Uzond()
      short size, size_of_peopl;
      in >> size >> size_of_peopl;
 
-     for (short i = 0; i < size; i++) 
-         program[i].set_size(size);
-     for (short i = 0; i < size_of_peopl; i++) 
-     program[i].set_size_Of_arr_peopls(size_of_peopl);
-
+    
      Uzond* program_n = new Uzond[size];
      for (int i = 0; i < size; i++) {
          program_n[i].people = nullptr;
@@ -441,6 +437,11 @@ Uzond::Uzond()
      }
 
      program = program_n;
+     for (short i = 0; i < size; i++)
+         program[i].set_size(size);
+     for (short i = 0; i < size_of_peopl; i++)
+         program[i].set_size_Of_arr_peopls(size_of_peopl);
+
      in.close();
      return true;
  }

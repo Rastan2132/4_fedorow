@@ -65,7 +65,7 @@ int main()
 		}
 	} while (work);
 
-	if (!(work = program[1].save(program)))
+	if (!(work = program->save(program)))
 		error();
 	return 0;
 }
