@@ -192,17 +192,17 @@ Uzond::Uzond()
 
 
 
- void Uzond::sort(Uzond*& program, short size, short size_of_peopl)
+ void Uzond::sort(Uzond*& program)
  {
      cout << endl << "Wybiesz:\n1 - posortowac za Name\n2 - posortowac za Surname\n3 - posortowac za sex\n4 - posortowac za piesel\n5 - posortowac za Year\nQ - Wyjść\n";
      cout << endl;
      switch (_getch())
      {
      case '1':
-         for (short l = 0; l < size; l++)
+         for (short l = 0; l < program->get_size(); l++)
          {
-             for (short i = 0; i < size_of_peopl; i++) {
-                 for (short j = i + 1; j < size_of_peopl; j++) {
+             for (short i = 0; i < program->get_size_Of_arr_peopls(); i++) {
+                 for (short j = i + 1; j < program->get_size_Of_arr_peopls(); j++) {
                      if (program[l].getPeople()[i]->Name.compare(program[l].getPeople()[j]->Name) > 0) {
                          swap(program[l].getPeople()[i]->Name, program[l].getPeople()[j]->Name);
                          swap(program[l].getPeople()[i]->Surname, program[l].getPeople()[j]->Surname);
@@ -217,10 +217,10 @@ Uzond::Uzond()
          system("pause");
          break;
      case '2':
-         for (short l = 0; l < size; l++)
+         for (short l = 0; l < program->get_size(); l++)
          {
-             for (short i = 0; i < size_of_peopl; i++) {
-                 for (short j = i + 1; j < size_of_peopl; j++) {
+             for (short i = 0; i < program->get_size_Of_arr_peopls(); i++) {
+                 for (short j = i + 1; j < program->get_size_Of_arr_peopls(); j++) {
                      if (program[l].getPeople()[i]->Surname.compare(program[l].getPeople()[j]->Surname) > 0) {
                          swap(program[l].getPeople()[i]->Name, program[l].getPeople()[j]->Name);
                          swap(program[l].getPeople()[i]->Surname, program[l].getPeople()[j]->Surname);
@@ -235,10 +235,10 @@ Uzond::Uzond()
          system("pause");
          break;
      case '3':
-         for (short l = 0; l < size; l++)
+         for (short l = 0; l < program->get_size(); l++)
          {
-             for (short i = 0; i < size_of_peopl; i++) {
-                 for (short j = i + 1; j < size_of_peopl; j++) {
+             for (short i = 0; i < program->get_size_Of_arr_peopls(); i++) {
+                 for (short j = i + 1; j < program->get_size_Of_arr_peopls(); j++) {
                      if (program[l].getPeople()[i]->sex.compare(program[l].getPeople()[j]->sex) > 0) {
                          swap(program[l].getPeople()[i]->Name, program[l].getPeople()[j]->Name);
                          swap(program[l].getPeople()[i]->Surname, program[l].getPeople()[j]->Surname);
@@ -253,10 +253,10 @@ Uzond::Uzond()
          system("pause");
          break;
      case '4':
-         for (short l = 0; l < size; l++)
+         for (short l = 0; l < program->get_size(); l++)
          {
-             for (short i = 0; i < size_of_peopl; i++) {
-                 for (short j = i + 1; j < size_of_peopl; j++) {
+             for (short i = 0; i < program->get_size_Of_arr_peopls(); i++) {
+                 for (short j = i + 1; j < program->get_size_Of_arr_peopls(); j++) {
                      if (program[l].getPeople()[i]->piesel.compare(program[l].getPeople()[j]->piesel) > 0) {
                          swap(program[l].getPeople()[i]->Name, program[l].getPeople()[j]->Name);
                          swap(program[l].getPeople()[i]->Surname, program[l].getPeople()[j]->Surname);
@@ -271,10 +271,10 @@ Uzond::Uzond()
          system("pause");
          break;
      case '5':
-         for (short l = 0; l < size; l++)
+         for (short l = 0; l < program->get_size(); l++)
          {
-             for (short i = 0; i < size_of_peopl; i++) {
-                 for (short j = i + 1; j < size_of_peopl; j++) {
+             for (short i = 0; i < program->get_size_Of_arr_peopls(); i++) {
+                 for (short j = i + 1; j < program->get_size_Of_arr_peopls(); j++) {
                      if (program[l].getPeople()[i]->Year.compare(program[l].getPeople()[j]->Year) > 0) {
                          swap(program[l].getPeople()[i]->Name, program[l].getPeople()[j]->Name);
                          swap(program[l].getPeople()[i]->Surname, program[l].getPeople()[j]->Surname);

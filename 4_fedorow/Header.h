@@ -110,7 +110,7 @@ public:
     void edit(int index_1, string name, string surname, string year, string piesel, string sex);
 
     bool initForFile(Uzond*& program);
-    void sort(Uzond*& program, short size, short size_of_peopl);
+    void sort(Uzond*& program);
     void find(Uzond*& program, short& size, short& size_of_peopl);
     bool save(Uzond* program);
 

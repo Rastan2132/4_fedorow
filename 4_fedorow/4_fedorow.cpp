@@ -53,10 +53,10 @@ int main()
 			} while (true);
 			edit(program, urz_num - 1, p_num - 1);
 			break;
-		/*case (115):
-			program[1].sort(program, size, size_of_peopl);
+		case (115):
+			program->sort(program);
 			break;
-		case (121):
+		/*case (121):
 			program[1].find(program, size, size_of_peopl);
 			break;*/
 		}
