@@ -12,7 +12,7 @@ int main()
 	vector<string> SURNAMES = { "Ivanov","Petrov","Sidorov","Smirnov","Kuznetsov","Ivanova","Petrova","Sidorova","Smirnova","Kuznetsova" };
 	vector<string>NAMES_of_Uzond = { "Urzad_Pracy","Urzad_Spraw","Urzad_Skarbowy","Urzad_s._cywilnego" };
 
-	if (chek_file("Users.txt") == 0)
+	if (chek_file("Uzonds.txt") == 0)
 	{ 
 		size = rand() % 10 + 1;
 		size_of_peopl = rand() % 10 + 1;
@@ -20,7 +20,7 @@ int main()
 		}
 	else 
 	{
-		program = create(2, 8, NAMES_of_Uzond, NAMES, SURNAMES);
+		program = create(1, 1, NAMES_of_Uzond, NAMES, SURNAMES);
 		program[0].initForFile(program, &size, &size_of_peopl);
 	}
 		
