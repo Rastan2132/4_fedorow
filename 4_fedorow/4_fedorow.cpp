@@ -20,9 +20,7 @@ int main()
 			program->set_size_Of_arr_peopls(size_of_peopl);
 		}
 	else 
-	{
 		program->initForFile(program);
-	}
 		
 	if (program->get_size() < 0)
 	{
@@ -30,7 +28,6 @@ int main()
 		program->set_size( 0);
 	}
 	
-
 	ShowCursor(0);
 	do
 	{
@@ -45,18 +42,18 @@ int main()
 			break;
 		case (100):
 			dell(program);
-			break;/*
+			break;
 		case (101):
 			do {
 				cout << "wprowadź numer urzendu i numer osoby" << endl;
 				cin >> urz_num >> p_num;
-				if (urz_num > 0 && p_num > 0 && urz_num <= size && p_num <= size_of_peopl)
+				if (urz_num > 0 && p_num > 0 && urz_num <= program->get_size() && p_num <= program->get_size_Of_arr_peopls())
 					break;
 				error();
 			} while (true);
 			edit(program, urz_num - 1, p_num - 1);
 			break;
-		case (115):
+		/*case (115):
 			program[1].sort(program, size, size_of_peopl);
 			break;
 		case (121):

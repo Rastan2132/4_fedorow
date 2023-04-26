@@ -201,7 +201,7 @@ void edit(Uzond*& program, short index_1, short index_2)
 	string line;
 	string name = "", surname = " ", Year = " ", Piesel = " ", Sex = " ";
 	cout << "Wstępne dane:" << endl;
-	program[index_1].show_ones(*program, index_2);
+	program->show_ones(program[index_1], index_2);
 	bool valid_input = false;
 	cout << "Podaj Name Surname Year Pesel i sex: ";
 	while (!valid_input) {
